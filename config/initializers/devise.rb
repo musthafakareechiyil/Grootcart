@@ -26,8 +26,7 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'musthafakareechiyil@gmail.com'
 
-  config.authentication_keys = [:email, :phone_number]
-
+  config.authentication_keys = [:phone_number]
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
