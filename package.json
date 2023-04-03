@@ -1,0 +1,17 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "My app",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "rails_admin": "3.1.2",
+    "sass": "^1.60.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha",
+    "build:css": "sass ./app/assets/stylesheets/rails_admin.scss:./app/assets/builds/rails_admin.css --no-source-map --load-path=node_modules && sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  }
+  
+}

@@ -74,3 +74,7 @@ end
 gem 'devise'
 
 gem 'phonelib'
+
+gem 'rails_admin', '~> 3.0'
+gem 'sassc'
+gem "cssbundling-rails"
