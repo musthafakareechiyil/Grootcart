@@ -5,9 +5,11 @@ RailsAdmin.config do |config|
 
   ## == Devise ==
   config.authorize_with do
-    redirect_to main_app.root_path unless current_user.admin == true
+    unless current_user && current_user.admin?
+      flash[:error] = "You are not authorized to access this page."
+      redirect_to main_app.root_path
+    end
   end
-
   # config.authenticate_with do
   #   warden.authenticate! scope: :user
   # end
