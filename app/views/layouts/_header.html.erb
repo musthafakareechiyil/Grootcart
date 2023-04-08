@@ -49,19 +49,13 @@
                     <div class="logo logo-width-1">
                         <!-- logo -->
                         <a href="/"><img
-                                src="https://www.logolynx.com/images/logolynx/9d/9d2359e45acfa89a0d7f200dcf1a9c76.jpeg"
+                                src="https://static.vecteezy.com/system/resources/previews/006/414/202/original/online-shopping-icon-on-laptop-online-shopping-symbol-for-your-website-design-logo-app-ui-isolated-white-background-free-vector.jpg"
                                 alt="logo"></a>
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
                             <form action="#">
-                                <select class="select-active">
-                                    <option>All Categories</option>
-                                    <option><SMall>Wi-Fi pentesting</SMall></option>
-                                    <option><small>Hotplugs</small></option>
-                                    <option><small>Implants&Remote Access</small></option>
-
-                                </select>
+                                <%= collection_select(:category, :id, Category.all, :id, :name, { prompt: "Categories" }, { class: "select-active" }) %>
                                 <input type="text" placeholder="Search for items...">
                             </form>
                         </div>
