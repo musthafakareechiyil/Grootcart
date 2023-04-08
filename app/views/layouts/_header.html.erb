@@ -5,7 +5,7 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><i class="fi-rs-smartphone"></i> <a href="#">(+01) - 2345 - 6789</a></li>
+                                <li><i class="fi-rs-smartphone"></i><a href="#">(+91) - 8075842670</a></li>
                                 <li><i class="fi-rs-marker"></i><a href="page-contact.html">Our location</a></li>
                             </ul>
                         </div>
@@ -19,20 +19,13 @@
                         <div class="header-info header-info-right">
                             <ul>
                                 <li>
-                                    <a class="language-dropdown-active" href="#"> <i class="fi-rs-world"></i> English <i
-                                            class="fi-rs-angle-small-down"></i></a>
-                                    <ul class="language-dropdown">
-                                        <li><a href="#"><img src="/assets/imgs/theme/flag-fr.png" alt="">Français</a>
-                                        </li>
-                                        <li><a href="#"><img src="/assets/imgs/theme/flag-dt.png" alt="">Deutsch</a>
-                                        </li>
-                                        <li><a href="#"><img src="/assets/imgs/theme/flag-ru.png" alt="">Pусский</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
                                         <% if user_signed_in? %>
-                                            <li><i class="fi-rs-user"></i><%= current_user.email.split("@").first %></li>
+                                            <li><i class="fi-rs-user"></i>
+                                            <% if current_user.admin?%>
+                                               <li><i class="fi-rs-user"></i><%= link_to 'Admin', rails_admin_path %></li>
+                                            <% else %>
+                                                <%= current_user.phone_number %>    
+                                            <% end %></li>
                                             <li><i class="fi-rs-user"></i><%= link_to 'Edit Profile', edit_user_registration_path %></li>
                                             <li><i class="fi-rs-sign-out"></i><%= button_to :logout, destroy_user_session_path, :method => :delete %></li>
                                         <% else %>
@@ -106,11 +99,11 @@
                                     <li><a class="active" href="/">Home </a>
 
                                     </li>
-                                    <!-- <li>
-                                    <a href="/contact">About</a>
-                                </li> -->
-                                    <li><a href="#">Shop</a>
-
+                                    <!--<li>
+                                        <a href="/contact">About</a>
+                                    </li> -->
+                                    <li>
+                                        <%= link_to 'Shop', shop_path %>
                                     </li>
 
                                     <li>

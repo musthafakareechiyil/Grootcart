@@ -78,3 +78,4 @@ gem 'phonelib'
 gem 'rails_admin', '~> 3.0'
 gem 'sassc'
 gem "cssbundling-rails"
+gem "kt-paperclip", "~> 6.4", ">= 6.4.1"
