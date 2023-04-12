@@ -20,11 +20,10 @@
                             <ul>
                                 <li>
                                         <% if user_signed_in? %>
-                                            <li><i class="fi-rs-user"></i>
                                             <% if current_user.admin?%>
                                                <li><i class="fi-rs-user"></i><%= link_to 'Admin', rails_admin_path %></li>
                                             <% else %>
-                                                <%= current_user.phone_number %>    
+                                                <li><i class="fi-rs-user"></i><%= current_user.phone_number %>    
                                             <% end %></li>
                                             <li><i class="fi-rs-user"></i><%= link_to 'Edit Profile', edit_user_registration_path %></li>
                                             <li><i class="fi-rs-sign-out"></i><%= button_to :logout, destroy_user_session_path, :method => :delete %></li>
