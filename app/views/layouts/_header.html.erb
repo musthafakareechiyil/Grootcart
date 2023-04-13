@@ -22,20 +22,14 @@
                                         <% if user_signed_in? %>
                                             <% if current_user.admin?%>
                                                <li><i class="fi-rs-user"></i><%= link_to 'Admin', rails_admin_path %></li>
-                                            <% else %>
-                                                <li><i class="fi-rs-user"></i><%= current_user.phone_number %>    
-                                            <% end %></li>
-                                            <li><i class="fi-rs-user"></i><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+                                            <% end %>
+                                            <li><i class="fi-rs-user"></i><%= link_to current_user.phone_number,edit_user_registration_path %></li>
                                             <li><i class="fi-rs-sign-out"></i><%= button_to :logout, destroy_user_session_path, :method => :delete %></li>
                                         <% else %>
                                             <li><i class="fi-rs-user"></i><%= link_to 'Sign Up', new_user_registration_path %></li>
                                             <li><i class="fi-rs-sign-in"></i><%= link_to 'Log in', new_user_session_path %></li>
                                         <% end %> 
                                 </li> 
-                                
-
-
-
                             </ul>
                         </div>
                     </div>
@@ -49,7 +43,8 @@
                         <!-- logo -->
                         <a href="/"><img
                                 src="https://static.vecteezy.com/system/resources/previews/006/414/202/original/online-shopping-icon-on-laptop-online-shopping-symbol-for-your-website-design-logo-app-ui-isolated-white-background-free-vector.jpg"
-                                alt="logo"></a>
+                                alt="logo">
+                        </a>
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
@@ -70,7 +65,6 @@
                                     <a class="mini-cart-icon" href="/cart">
                                         <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
                                     </a>
-
                                 </div>
                             </div>
                         </div>
