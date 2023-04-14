@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  post '/addresses/create', to: 'addresses#create', as: 'create_address'
+  resources :addresses
+  get 'addresses/new', to: 'addresses#new', as: 'new_custom_address'
+  get 'user_profile/index'
+  get 'user_profile/orders'
+  get 'user_profile/addresses'
+  get 'user_profile/account'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'sessions/new'
   get 'sessions/create'

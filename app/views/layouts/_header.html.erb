@@ -23,7 +23,7 @@
                                             <% if current_user.admin?%>
                                                <li><i class="fi-rs-user"></i><%= link_to 'Admin', rails_admin_path %></li>
                                             <% end %>
-                                            <li><i class="fi-rs-user"></i><%= link_to current_user.phone_number,edit_user_registration_path %></li>
+                                            <li><i class="fi-rs-user"></i><%= link_to current_user.phone_number,user_profile_index_path %></li>
                                             <li><i class="fi-rs-sign-out"></i><%= button_to :logout, destroy_user_session_path, :method => :delete %></li>
                                         <% else %>
                                             <li><i class="fi-rs-user"></i><%= link_to 'Sign Up', new_user_registration_path %></li>

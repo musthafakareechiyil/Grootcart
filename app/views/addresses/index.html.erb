@@ -1,0 +1,36 @@
+<!-- app/views/addresses/index.html.erb -->
+<h1>Addresses</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Postal Code</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.address_type %></td>
+        <td><%= address.full_name %></td>
+        <td><%= address.email %></td>
+        <td><%= address.phone_number %></td>
+        <td><%= address.address %></td>
+        <td><%= address.state %></td>
+        <td><%= address.country %></td>
+        <td><%= address.postal_code %></td>
+        <td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+ <p><%= link_to "Add Address", new_custom_address_path, class: "btn", data: { modal: "modal" } %></p>  
+ <%= link_to "Back", user_profile_index_path, class: "" %>                                
+

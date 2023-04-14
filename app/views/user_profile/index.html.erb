@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+<main class="main">
+    <!-- <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" rel="nofollow">Home</a>
+                <span></span> Pages
+                <span></span> Account
+            </div>
+        </div> -->
+    </div>
+    <section class="pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+               
+                <div class="col-lg-10 m-auto">
+                    <%# <% if locals[:update] %>
+                        <!-- <p class="text-success">Product added</p> -->
+                        <%# <div class="alert alert-success text-center" role="alert" id="alert">
+                            Changes saved!
+                        </div> %>
+                    <%# <% end %>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="dashboard-menu">
+                                <ul class="nav flex-column" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                                    </li>
+                                    <!-- <li class="nav-item">
+                                        <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders" role="tab" aria-controls="track-orders" aria-selected="false"><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
+                                    </li> -->
+                                    <li class="nav-item">
+                                       <!-- <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>My Address</a>-->
+                                        <%= link_to addresses_path, class: "nav-link", id: "address-tab", role: "tab", aria: { controls: "address", selected: true } do %>
+                                        <i class="fi-rs-marker mr-10"></i>
+                                        My Address
+                                        <% end %>
+                                        
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <i class="nav-link"></i><%= button_to :logout, destroy_user_session_path, :method => :delete %>
+                </div>    
+            </div>
+        </div>
+    </section>
+</main>
