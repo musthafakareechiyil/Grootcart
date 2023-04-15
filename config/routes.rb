@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'user_profile/orders'
   get 'user_profile/addresses'
   get 'user_profile/account'
+  patch '/user_profile/update', to: 'user_profile#update', as: 'user_profile_update'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'sessions/new'
   get 'sessions/create'
