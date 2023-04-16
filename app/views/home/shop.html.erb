@@ -7,7 +7,7 @@
             <div class="product-cart-wrap">
               <div class="product-img-action-wrap">
                 <div class="product-img" style="height: 5cm;">
-                  <a href="/productDetails/<%= product.id %>">
+                  <%= product.id %>
                     <%= image_tag product.image.url(:medium), class: "default-img", alt: "", style: "max-width: 100%; max-height: 100%;" %>
                     <%= image_tag product.image.url(:thumb), class: "", alt: "", style: "max-width: 100%; max-height: 100%;" %>
                   </a>
@@ -42,7 +42,8 @@
                                 <span style="color: green;">$2465</span> -->
                 </div>
                 <div class="product-action-1 show">
-                  <a aria-label="Add To Cart" class="action-btn hover-up" href="#"><i class="fi-rs-shopping-bag-add"></i></a>
+                  <%# <%= link_to "<i class='fi-rs-shopping-bag-add'></i>".html_safe, add_to_cart_path(@product), method: :put, class: "action-btn hover-up", aria: { label: "Add To Cart" } %> 
+                  <%= button_to 'Add to cart', add_to_cart_custom_path(product_id: product.id), method: :put %>
                 </div>
               </div>
             </div>

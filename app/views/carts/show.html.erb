@@ -1,0 +1,49 @@
+<div class="hl jumbotron mt-5 ms-5 ">
+  <h3 class="mb-3 mt-5">Your Shopping Cart</h3>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_products_with_qty.each do |array| %>
+          <% product = array[0] %>
+          <% qty = array[1] %>
+          <tr>
+            <td class="align-middle"><%= image_tag url_for(product.image(:thumb)) %></td>
+            <td class="align-middle"><%= product.title %></td>
+            <td class="align-middle"><%= product.price %></td>
+            <td class="align-middle"><%= qty %></td>
+            <td class="align-middle"><%= product.price * qty.to_i %></td>
+            <td class="align-middle">
+
+<div class="d-flex align-items-center">
+  <%= button_to "+", add_to_cart_path(product_id: product.id), method: :put, class: "btn btn-primary mr-2 ms-2" %>
+  <%= button_to "-", remove_one_cart_path(product_id: product.id), method: :put, class: "btn btn-secondary mr-2 ms-2" %>
+</div>
+
+
+            </td>
+          </tr>
+        <% end %>
+        <tr class="font-weight-bold">
+          <td colspan="3">
+            <h5>Total</h5>
+          </td>
+          <td>
+            <h5><%= @cart_total %></h5>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

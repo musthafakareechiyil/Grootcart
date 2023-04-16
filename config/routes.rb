@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'carts/show'
   post '/addresses/create', to: 'addresses#create', as: 'create_address'
   resources :addresses
   get 'addresses/new', to: 'addresses#new', as: 'new_custom_address'
@@ -14,6 +15,18 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
   get 'shop' => 'home#shop'
+
+  resource :cart, only: [:show] do 
+    member do
+      put "add/:product_id", to: 'carts#add', as: :add_to
+      put "remove/:product_id", to: 'carts#remove', as: :remove_from
+      put "remove_one/:product_id", to: 'carts#removeone', as: :remove_one
+    end
+  end
+  
+  put '/carts/add/:product_id', to: 'carts#add', as: 'add_to_cart_custom'
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

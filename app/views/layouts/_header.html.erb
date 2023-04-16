@@ -41,10 +41,10 @@
                 <div class="header-wrap">
                     <div class="logo logo-width-1">
                         <!-- logo -->
-                        <a href="/"><img
-                                src="https://static.vecteezy.com/system/resources/previews/006/414/202/original/online-shopping-icon-on-laptop-online-shopping-symbol-for-your-website-design-logo-app-ui-isolated-white-background-free-vector.jpg"
-                                alt="logo">
-                        </a>
+                    <%= link_to cart_path, class: "navbar-brand" do %>
+                    <%= image_tag "https://static.vecteezy.com/system/resources/previews/006/414/202/original/online-shopping-icon-on-laptop-online-shopping-symbol-for-your-website-design-logo-app-ui-isolated-white-background-free-vector.jpg", alt: "logo" %>
+                    <% end %>
+
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
