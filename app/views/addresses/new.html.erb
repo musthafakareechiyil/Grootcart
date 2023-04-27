@@ -3,7 +3,7 @@
 
 
     
-<h1>New Address</h1>
+<h3>New Address</h3>
 
 <%= form_for @address, url: addresses_path do |f| %>
   <% if @address.errors.any? %>
@@ -17,10 +17,11 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :address_type %>
-    <%= f.select :address_type, options_for_select(['Home', 'Office', 'Other']) %>
-  </div>
+<div class="form-group">
+  <%= f.label :address_type %>
+  <%= f.select :address_type, options_for_select(['Home', 'Office', 'Other']), {}, class: "form-control", style: "width: 200px; height: 35px; border-radius: 5px; background-color: #f1f1f1;" %>
+</div>
+
 
   <div class="form-group">
     <%= f.label :full_name %>

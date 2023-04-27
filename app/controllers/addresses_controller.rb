@@ -10,12 +10,15 @@ class AddressesController < ApplicationController
 
   def create
     @address = current_user.addresses.build(address_params)
-    if @address.save
+    if @address.valid?
+      @address.save
       redirect_to addresses_path, notice: "Address added successfully"
     else
+      flash.now[:alert] = "Please fix the errors below"
       render :new
     end
   end
+  
   
   def update
     @address = current_user.addresses.find(params[:id])

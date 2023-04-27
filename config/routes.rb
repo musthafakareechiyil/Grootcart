@@ -25,6 +25,35 @@ Rails.application.routes.draw do
   end
   
   put '/carts/add/:product_id', to: 'carts#add', as: 'add_to_cart_custom'
+  get '/checkout', to: 'checkout#checkout'
+  post '/purchase', to: 'checkout#purchase'
+  resources :orders
+  get '/orders/history', to: 'orders#history', as: 'orders_history'
+
+  resources :orders do
+    member do
+      get :order_confirmation
+      patch :cancel
+    end
+  end
+
+  resources :orders do
+    member do
+      get :order_confirmation
+      delete :cancel
+    end
+  end
+  
+
+  resources :order_items
+
+
+  
+  
+
+
+
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

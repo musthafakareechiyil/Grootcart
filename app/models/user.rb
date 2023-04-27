@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :addresses
+  has_many :orders
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -55,8 +57,13 @@ class User < ApplicationRecord
 
   def purchase_cart_products!
     get_cart_products_with_qty.each do |product, qty|
+      order = self.orders.create(user: self, address: address, payment_method: payment_method)
       self.orders.create(user: self, products: product, quantity: qty)
     end
+    $redis.del current_user_cart
+  end
+
+  def remove_all_items_from_cart
     $redis.del current_user_cart
   end
 

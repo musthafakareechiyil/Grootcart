@@ -1,6 +1,19 @@
 
 class CartsController < ApplicationController
   before_action :authenticate_user!
+
+  def checkout
+    @order = Order.create(user: current_user)
+    @cart.items.each do |item|
+      OrderItem.create(
+        order: @order,
+        product: item.product,
+        quantity: item.quantity
+      )
+    end
+    @cart.empty!
+    redirect_to @order
+  end  
   
   def show
     @cart_products_with_qty = current_user.get_cart_products_with_qty

@@ -26,7 +26,11 @@
                             <div class="dashboard-menu">
                                 <ul class="nav flex-column" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                                        <%# <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a> %>
+                                        <%= link_to orders_path, class: "nav-link", id: "orders-tab", role: "tab", aria: { controls: "orders", selected: false } do %>
+                                        <i class="fi-rs-shopping-bag mr-10"></i>
+                                        Orders
+                                        <% end %>
                                     </li>
                                     <!-- <li class="nav-item">
                                         <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders" role="tab" aria-controls="track-orders" aria-selected="false"><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>

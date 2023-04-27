@@ -1,0 +1,17 @@
+
+
+<div class="col-12 text-center">
+    <img src="/assets/images/Orderplaced.jpg" alt="">
+    <h4>Your order is successfully placed!</h4>
+    <br>
+    <%= link_to "Back to shopping", shop_path,class:"btn btn-primary mb-5" %>
+</div>
+
+
+<p><%= @order.address %></p>
+
+<p>The total cost of your order is <%= number_to_currency(@order.total_price) %>.</p>
+
+<p>You can view your order details <a href="<%= order_path(@order) %>">here</a>.</p>
+
+<p>Return to the <a href="<%= cart_path %>">shopping cart</a>.</p>

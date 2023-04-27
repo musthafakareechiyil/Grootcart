@@ -1,0 +1,24 @@
+<h1>Edit Order</h1>
+
+<%= form_with(model: @order, url: order_path(@order), method: :put) do |form| %>
+  <% if @order.errors.any? %>
+    <div>
+      <% @order.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+<div>
+  <%= form.label :address %>
+  <%= form.select :address_id, current_user.addresses.map { |a| [a.formatted_address, a.id] } %>
+</div>
+
+
+  <div>
+    <%= form.label :payment_method %>
+    <%= form.select :payment_method, ["credit_card", "paypal","cash on delivery"] %>
+  </div>
+
+  <%= form.submit "Update Order" %>
+<% end %>
