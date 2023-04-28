@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   
 
   resources :order_items
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
 
 
   

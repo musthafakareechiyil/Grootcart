@@ -10,13 +10,18 @@ module Grootcart
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.active_job.queue_adapter = :sidekiq
+    config.after_initialize do
+      Sidekiq::Scheduler.load_schedule! if defined?(Sidekiq::Scheduler)
+    end
+
 
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "New Delhi"
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

@@ -25,25 +25,27 @@ class User < ApplicationRecord
 
   def add_to_cart(product_id)
     product = Product.find(product_id)
-    if product.stock_quantity > 0
+    if product.stock_quantity > 0 && product.stock_quantity - product.reserved_quantity > 0
       $redis.hincrby current_user_cart, product_id, 1
-      product.update(stock_quantity: product.stock_quantity - 1)
+      product.update(reserved_quantity: product.reserved_quantity + 1, reserved_until: Time.now + 15.minutes)
+      ReturnReservedStockWorker.perform_in(15.minutes, product_id)
+
       return "Product added to cart"
     else
       return "Sorry, the product is out of stock"
     end
   end
-
+  
   def remove_from_cart(product_id)
     $redis.hdel current_user_cart, product_id
     product = Product.find(product_id)
-    product.update(stock_quantity: product.stock_quantity + 1)
+    product.update(reserved_quantity: product.reserved_quantity - 1)
   end
 
   def remove_one_from_cart(product_id)
     $redis.hincrby current_user_cart, product_id, -1
     product = Product.find(product_id)
-    product.update(stock_quantity: product.stock_quantity + 1)
+    product.update(reserved_quantity: product.reserved_quantity - 1)
   end
 
   def cart_count

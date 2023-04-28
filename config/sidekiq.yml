@@ -1,0 +1,7 @@
+:concurrency: 5
+:schedule:
+  product_reservation_worker:
+    cron: '*/15 * * * *'
+    class: 'ProductReservationWorker'
+    queue: 'default'
+    args: []

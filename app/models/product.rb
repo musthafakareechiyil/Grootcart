@@ -6,7 +6,9 @@ class Product < ApplicationRecord
 
     belongs_to :category
     validates :category_id, presence: true
-
+    def self.expired_reserved_stock
+        where("reserved_at < ?", 15.minutes.ago).where("reserved_quantity > ?", 0)
+    end
 
     
     

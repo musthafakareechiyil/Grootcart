@@ -80,3 +80,4 @@ gem 'sassc'
 gem "cssbundling-rails"
 gem "kt-paperclip", "~> 6.4", ">= 6.4.1"
 gem "redis"
+gem "sidekiq", "~> 7.0"
