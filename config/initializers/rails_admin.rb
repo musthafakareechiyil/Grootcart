@@ -3,6 +3,16 @@ RailsAdmin.config do |config|
 
   ### Popular gems integration
 
+  config.model 'Order' do
+    edit do
+      field :status, :enum do
+        enum do
+          Order::ORDER_STATUS.invert
+        end
+      end
+    end
+  end
+
   ## == Devise ==
   config.authorize_with do
     unless current_user && current_user.admin?

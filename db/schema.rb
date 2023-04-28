@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_17_070610) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_131245) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -138,6 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_070610) do
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.bigint "category_id"
+    t.integer "stock_quantity"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
