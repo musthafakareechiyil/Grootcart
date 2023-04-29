@@ -15,11 +15,14 @@ class CheckoutController < ApplicationController
       current_user.get_cart_products_with_qty.each do |product, qty|
         order_item = order.order_items.create(product: product, quantity: qty)
         order_item.update(price: product.price) # set the price of the order item to the price of the product
+
+        product.update(stock_quantity: product.stock_quantity - qty)
+
       end
       current_user.remove_all_items_from_cart
     
       redirect_to order_path(order)
     end
     
-  end
+end
   
