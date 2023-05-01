@@ -16,7 +16,7 @@ class CheckoutController < ApplicationController
         order_item = order.order_items.create(product: product, quantity: qty)
         order_item.update(price: product.price) # set the price of the order item to the price of the product
 
-        product.update(stock_quantity: product.stock_quantity - qty)
+        product.update(stock_quantity: product.stock_quantity - qty.to_i)
 
       end
       current_user.remove_all_items_from_cart
