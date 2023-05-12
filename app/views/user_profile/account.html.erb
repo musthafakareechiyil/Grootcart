@@ -1,0 +1,57 @@
+<div class="tab-pane fade active show" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
+                <div class="card ">              
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <section class="content-body  p-xl-4 ">
+                                <%= form_for @user, url: user_profile_update_path, method: "patch" do |f| %>
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="row gx-3">
+                                                <div class="col-lg-6 mb-3">
+                                                <%= f.label :phone, class: "form-label" %>
+                                                <%= f.text_field :phone_number, class: "form-control" %>
+                                                </div>
+                                                <div class="col-lg-12 mb-3">
+                                                <%= f.label :email, class: "form-label" %>
+                                                <%= f.email_field :email, class: "form-control" %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <br>
+                                <%= f.submit "Save Changes", class: "btn btn-primary" %>
+                                <% end %>
+
+                                <hr class="my-5">
+                                <div class="row" style="max-width:920px">
+                                    <div class="col-md">
+                                        <article class="box mb-3 bg-white">
+                                            <h6>Password</h6>
+                                            <small class="text-muted d-block" style="width:70%">You can reset or change your password by clicking here</small>
+                                            edit_user_password
+                                            <%= link_to 'Change', edit_user_password_path, class: 'btn btn-light btn-sm rounded font-md' %>
+                                            <div id="ex4" class="modal" style="height: fit-content;width: fit-content;">
+                                                <p>Inorder to change your password, you need to verify using the otp sent to your phone number. <br></p>
+                                                <a href="/changepassword" class="btn btn-primary p-1 ">Send OTP</a>
+                                                <a href="#ex4" rel="modal:close" class="btn bg-danger p-1">Cancel</a>
+                                              </div>
+                                              <div id="ex5" class="modal" style="height: fit-content;width: fit-content;">
+                                                <p>Inorder to change your password, you need to verify using the otp sent to your phone number. <br></p>
+                                                <a href="#ex5" rel="modal:open">Close</a>
+                                              </div>
+                                        </article>
+                                    </div> 
+                                    <div class="col-md">
+                                        <article class="box mb-3 bg-white">                                           
+                                            <h6>Remove account</h6>
+                                            cancel_user_registration
+                                            <small class="text-muted d-block" style="width:70%">Once you delete your account, there is no going back.</small>
+                                            <%= link_to 'Deactivate', cancel_user_registration_path, method: :delete, data: { confirm: 'Are you sure you want to deactivate your account?' }, class: 'btn float-center btn-light rounded btn-sm font-md' %>
+                                        </article>
+                                    </div> 
+                                </div> 
+                            </section>
+                        </div> 
+                    </div> 
+                </div>
+</div>
