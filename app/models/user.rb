@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
   def cart_count
     quantities = $redis.hvals "cart#{id}"
-    quantities.reduce(0) {|sum,qty| sum+ qty.ti_i}
+    quantities.reduce(0) {|sum,qty| sum+ qty.to_i}
   end
 
   def cart_total_price

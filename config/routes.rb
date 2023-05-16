@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'payments/create'
+  post 'payments/callback'
+  get 'payments/new'
   get 'carts/show'
   post '/addresses/create', to: 'addresses#create', as: 'create_address'
   resources :addresses

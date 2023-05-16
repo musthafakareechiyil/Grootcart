@@ -1,0 +1,38 @@
+<%= form_tag('/payments/create', method: 'post', id: 'payment-form') do %>
+  <%= label_tag(:amount, 'Amount (in paise)') %>
+  <%= text_field_tag(:amount, @amount, readonly: true) %>
+
+  <%= submit_tag('Pay with Razorpay') %>
+<% end %>
+
+
+<script>
+  document.getElementById('payment-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var form = this;
+
+    // Create a Razorpay payment
+    var amount = form.querySelector('#amount').value;
+    var options = {
+      key: '<%= Rails.application.credentials.dig(:razorpay, :key_id) %>',
+      amount: amount,
+      currency: 'INR',
+      name: 'Your Company Name',
+      description: 'Payment for your order',
+      image: '/path/to/your/logo.png',
+      handler: function(response) {
+        // Redirect to the callback URL after payment
+        window.location.href = '/payments/callback?razorpay_payment_id=' + response.razorpay_payment_id + '&razorpay_order_id=' + response.razorpay_order_id + '&razorpay_signature=' + response.razorpay_signature;
+      },
+      prefill: {
+        name: 'John Doe',
+        email: 'john@example.com',
+        contact: '9876543210'
+      }
+    };
+
+    var razorpayPayment = new Razorpay(options);
+    razorpayPayment.open();
+  });
+</script>

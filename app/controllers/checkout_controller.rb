@@ -3,6 +3,11 @@ class CheckoutController < ApplicationController
 
     def checkout
       @addresses = current_user.addresses
+      @total_price = current_user.cart_total_price
+
+      if current_user.cart_count.zero?
+        redirect_to shop_path, notice: "Your cart is empty. Please add items to your cart before proceeding to checkout."
+      end
     end
   
     def purchase
@@ -21,7 +26,12 @@ class CheckoutController < ApplicationController
       end
       current_user.remove_all_items_from_cart
     
-      redirect_to order_path(order)
+      if payment_method == 'cod'
+        redirect_to order_path(order)
+      else
+        redirect_to payments_new_path(amount: total_price)
+      end
+
     end
     
 end
