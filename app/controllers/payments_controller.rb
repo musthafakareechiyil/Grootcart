@@ -1,6 +1,7 @@
 class PaymentsController < ApplicationController
   def new
     @amount = params[:amount].to_i || @total_price
+    @amount = @amount * 100
   end
 
   def create
