@@ -11,28 +11,26 @@ class CheckoutController < ApplicationController
     end
   
     def purchase
-      address = current_user.addresses.find(params[:address_id])
+      # address = current_user.addresses.find(params[:address_id])
       payment_method = params[:payment_method]
 
       total_price = current_user.cart_total_price
-    
-      order = current_user.orders.create(address: address, payment_method: payment_method,total_price: total_price, order_status: 'pending')
-      current_user.get_cart_products_with_qty.each do |product, qty|
-        order_item = order.order_items.create(product: product, quantity: qty)
-        order_item.update(price: product.price) # set the price of the order item to the price of the product
+      # order = current_user.orders.create(address: address, payment_method: payment_method,total_price: total_price, order_status: 'pending')
+      # current_user.get_cart_products_with_qty.each do |product, qty|
+      #   order_item = order.order_items.create(product: product, quantity: qty)
+      #   order_item.update(price: product.price) # set the price of the order item to the price of the product
 
-        product.update(stock_quantity: product.stock_quantity - qty.to_i)
+      #   product.update(stock_quantity: product.stock_quantity - qty.to_i)
 
-      end
-      current_user.remove_all_items_from_cart
+      # end
+      # current_user.remove_all_items_from_cart
     
       if payment_method == 'cod'
-        redirect_to order_path(order)
+        redirect_to payments_success_path
       else
         redirect_to payments_new_path(amount: total_price)
       end
 
     end
-    
 end
   

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get '/payments/success', to: 'payments#success'
   post 'payments/create'
-  post 'payments/callback'
+  get '/payments/callback' => 'payments#callback'
   get 'payments/new'
+
   get 'carts/show'
   post '/addresses/create', to: 'addresses#create', as: 'create_address'
   resources :addresses
