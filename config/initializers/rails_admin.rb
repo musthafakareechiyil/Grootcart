@@ -13,6 +13,14 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Order' do
+    list do
+      field :created_at do
+        filterable :date_range # Add the date range filter
+      end
+    end
+  end
+
   ## == Devise ==
   config.authorize_with do
     unless current_user && current_user.admin?
