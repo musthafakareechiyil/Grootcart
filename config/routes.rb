@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/chart', to: 'chart#show'
   get '/payments/success', to: 'payments#success'
   post 'payments/create'
   get '/payments/callback' => 'payments#callback'

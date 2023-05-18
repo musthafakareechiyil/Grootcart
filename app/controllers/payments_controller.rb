@@ -47,7 +47,6 @@ class PaymentsController < ApplicationController
 
     # Handle successful payment logic
     # For example, you can render a success page or redirect to a relevant URL
-    render 'success'
   end
 
   private
