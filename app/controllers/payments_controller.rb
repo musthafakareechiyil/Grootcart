@@ -44,7 +44,7 @@ class PaymentsController < ApplicationController
     total_price = current_user.cart_total_price
     process_order(current_user, 'razorpay',total_price)
 
-
+    
     # Handle successful payment logic
     # For example, you can render a success page or redirect to a relevant URL
   end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'codsuccess/show'
   resources :product
   get '/chart', to: 'chart#show'
   get '/payments/success', to: 'payments#success'

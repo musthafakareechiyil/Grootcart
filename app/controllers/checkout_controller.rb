@@ -11,9 +11,7 @@ class CheckoutController < ApplicationController
     end
   
     def purchase
-      if current_user.cart_count.zero?
-        redirect_to shop_path, notice: "Your cart is empty. Please add items to your cart before proceeding to checkout."
-      end
+
       # address = current_user.addresses.find(params[:address_id])
       payment_method = params[:payment_method]
 
@@ -30,7 +28,7 @@ class CheckoutController < ApplicationController
     
       if payment_method == 'cod'
         process_order(current_user.addresses.find(params[:address_id]), payment_method, total_price)
-        redirect_to payments_success_path
+        redirect_to codsuccess_show_path
       else
         redirect_to payments_new_path(amount: total_price)
       end
