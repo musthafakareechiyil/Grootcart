@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   def add_to_cart(product_id)
     product = Product.find(product_id)
-    if product.stock_quantity > 0 && product.stock_quantity - product.reserved_quantity > 0
+    if product.stock_quantity - product.reserved_quantity > 0
       $redis.hincrby current_user_cart, product_id, 1
       product.update(reserved_quantity: product.reserved_quantity + 1, reserved_until: Time.now + 15.minutes)
       ReturnReservedStockWorker.perform_in(15.minutes, product_id)
@@ -79,5 +79,7 @@ class User < ApplicationRecord
   def remove_all_items_from_cart
     $redis.del current_user_cart
   end
+
+  
 
 end

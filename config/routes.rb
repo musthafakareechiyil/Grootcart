@@ -30,8 +30,8 @@ Rails.application.routes.draw do
       put "remove_one/:product_id", to: 'carts#removeone', as: :remove_one
     end
   end
-  
-  put '/carts/add/:product_id', to: 'carts#add', as: 'add_to_cart_custom'
+  get '/carts/add/:product_id', to: 'carts#add', as: 'add_to_cart_custom'
+  put '/carts/add/:product_id', to: 'carts#add'
   get '/checkout', to: 'checkout#checkout'
   post '/purchase', to: 'checkout#purchase'
   resources :orders

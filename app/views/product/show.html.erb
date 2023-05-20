@@ -65,16 +65,16 @@
                                                 <div class="product-extra-link2">
                                                         <%# <button type="submit" class="button button-add-to-cart"> Add to cart</button> %>
                                                     <% if @product.stock_quantity - @product.reserved_quantity > 0 %>
-                                                        <%= button_to add_to_cart_custom_path(product_id: @product.id), method: :put, class: "add-to-cart-btn", style: "display: flex; align-items: center; justify-content: center; background-color: #333; color: #fff; border: none; border-radius: 5px; padding: 10px;" do %>
-                                                        <i class="fi-rs-shopping-bag-add" style="color: #fff;"> &nbsp Add to Cart</i>
+                                                        <%= link_to add_to_cart_custom_path(product_id: @product.id), method: :put, class: "add-to-cart-btn", style: "display: flex; align-items: center; justify-content: center; background-color: #333; color: #fff; border: none; border-radius: 5px; padding: 10px;" do %>
+                                                            <i class="fi-rs-shopping-bag-add" style="color: #fff;"></i>
                                                         <% end %>
                                                     <% else %>
-                                                        <%= button_to add_to_cart_custom_path(product_id: @product.id), method: :put, class: "add-to-cart-btn", style: "display: flex; align-items: center; justify-content: center; background-color: red; color: #fff; border: none; border-radius: 5px; padding: 10px;", onclick: "alert('Sorry , the product is out of stock!'); return false;" do %>
-                                                        <i class="fi-rs-shopping-bag-add" style="color: #fff;">&nbsp Out of Stock</i>
+                                                        <%= button_to add_to_cart_custom_path(product_id: @product.id), method: :put, class: "add-to-cart-btn", style: "display: flex; align-items: center; justify-content: center; background-color: red; color: #fff; border: none; border-radius: 5px; padding: 10px;", onclick: "alert('Sorry, the product is out of stock!'); return false;" do %>
+                                                            <i class="fi-rs-shopping-bag-add" style="color: #fff;">&nbsp Out of Stock</i>
                                                         <% end %>
-                                                    <% end %> 
+                                                    <% end %>
+ 
                                                          <%# <a href="/addWishList/6439137643ef1f303ec6a354" aria-label="Add To Wishlist" class="action-btn hover-up" id="wishbtn"><i class="fi-rs-heart"></i></a> %>
-
                                         <form action="" method="post">
                                             <button type="submit" id="wishbtn1" style="display: none;"></button>
                                         </form>
