@@ -1,5 +1,6 @@
 
 class CartsController < ApplicationController
+  include Devise::Controllers::Helpers
   before_action :authenticate_user!
 
   def checkout
@@ -16,9 +17,15 @@ class CartsController < ApplicationController
   end  
   
   def show
-    @cart_products_with_qty = current_user.get_cart_products_with_qty
-    @cart_total = current_user.cart_total_price
+    if current_user.cart_total_price == 0
+      flash[:notice] = "Your cart is empty!"
+      redirect_to shop_path
+    else
+      @cart_products_with_qty = current_user.get_cart_products_with_qty.reject { |_, qty| qty.to_i.zero? }
+      @cart_total = current_user.cart_total_price
+    end
   end
+  
   
   def add
     current_user.add_to_cart(params[:product_id])

@@ -80,6 +80,4 @@ class User < ApplicationRecord
     $redis.del current_user_cart
   end
 
-  
-
 end
