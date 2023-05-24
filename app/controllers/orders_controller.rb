@@ -71,14 +71,21 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
   
+  def return
+    @order = current_user.orders.find(params[:id])
+    @order.order_status = 5 # Set the status to "Returned"
   
-  
+    if @order.save
+      flash[:success] = "Your order has been returned"
+    else
+      flash[:error] = "There was a problem returning your order"
+    end
+    redirect_to orders_path
+  end
   
   def history
     @orders = current_user.orders
   end
-
-  
   
   private
   

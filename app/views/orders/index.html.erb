@@ -19,6 +19,10 @@
             Delivered
           <% elsif order.order_status == 4 %>
             Cancelled
+          <% elsif order.order_status == 5 %>
+            Returned
+          <% elsif order.order_status == 6 %>
+            Returned
           <% end %>
         </td>
         <td>
@@ -28,9 +32,13 @@
             <%= button_to 'Cancel', cancel_order_path(order), method: :patch, onclick: "return confirm('Are you sure you want to cancel your order?');" %>
           <% elsif order.order_status == 3 %>
             <%= link_to 'View', order_path(order) %> |
-            <%= button_to 'Return', cancel_order_path(order), method: :patch, onclick: "return confirm('Are you sure you want to return your order?');" %>
+            <%= button_to 'Return', return_order_path(order), method: :patch, onclick: "return confirm('Are you sure you want to return your order?');" %>
           <% elsif order.order_status == 4 %>
             Your Order has been cancelled
+          <% elsif order.order_status == 5 %>
+            Amount will be reflected in your account within 3 buisinuss days
+          <% elsif order.order_status == 6 %>
+            The amount has been refunded
           <% end %>
         </td>
       </tr>

@@ -5,6 +5,11 @@ RailsAdmin.config do |config|
 
   config.model 'Order' do
     edit do
+      field :refund_confirmed do
+        visible do
+          bindings[:object].order_status == 5
+        end
+      end
       field :order_status, :enum do
         enum do
           {
@@ -12,12 +17,15 @@ RailsAdmin.config do |config|
             '1': 1,
             '2': 2,
             '3': 3,
-            '4': 4
+            '4': 4,
+            '5': 5,
+            '6': 6
           }
         end
       end
     end
   end
+  
 
   config.model 'Order' do
     list do

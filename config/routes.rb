@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :orders do
+    member do
+      patch :return
+    end
+  end
   get 'codsuccess/show'
   resources :product
   get '/chart', to: 'chart#show'
