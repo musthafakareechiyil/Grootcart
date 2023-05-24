@@ -5,9 +5,15 @@ RailsAdmin.config do |config|
 
   config.model 'Order' do
     edit do
-      field :status, :enum do
+      field :order_status, :enum do
         enum do
-          Order::ORDER_STATUS.invert
+          {
+            '0': 0,
+            '1': 1,
+            '2': 2,
+            '3': 3,
+            '4': 4
+          }
         end
       end
     end

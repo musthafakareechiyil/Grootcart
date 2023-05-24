@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
 
   def cancel
     @order = current_user.orders.find(params[:id])
-    @order.status = "cancelled"
+    @order.order_status = 4
     
     if @order.save
       flash[:success] = "Your order has been cancelled"
