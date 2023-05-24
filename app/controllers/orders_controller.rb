@@ -79,9 +79,22 @@ class OrdersController < ApplicationController
       flash[:success] = "Your order has been returned"
     else
       flash[:error] = "There was a problem returning your order"
+      redirect_to orders_path
+      return
     end
+  
+    if @order.order_status == 6 && @order.refund_confirmed?
+      @order.refund_amount = @order.total_price # Store the total price as the refund amount
+      if @order.save
+        flash[:success] = "Your order has been returned and refunded"
+      else
+        flash[:error] = "There was a problem returning and refunding your order"
+      end
+    end
+  
     redirect_to orders_path
   end
+  
   
   def history
     @orders = current_user.orders

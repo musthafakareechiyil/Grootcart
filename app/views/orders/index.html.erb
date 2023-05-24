@@ -36,7 +36,8 @@
           <% elsif order.order_status == 4 %>
             Your Order has been cancelled
           <% elsif order.order_status == 5 %>
-            Amount will be reflected in your account within 3 buisinuss days
+            <%= button_to 'Check refund status', return_order_path(order), method: :patch %>
+            Will be refunded within 3 working days
           <% elsif order.order_status == 6 %>
             The amount has been refunded
           <% end %>
