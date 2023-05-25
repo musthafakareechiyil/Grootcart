@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_071118) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_062058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_071118) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string "code"
+    t.date "valid_from"
+    t.date "valid_until"
+    t.decimal "minimum_purchase_amount"
+    t.string "discount_type"
+    t.decimal "discount_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coupons_orders", id: false, force: :cascade do |t|
+    t.bigint "coupon_id"
+    t.bigint "order_id"
+    t.index ["coupon_id", "order_id"], name: "index_coupons_orders_on_coupon_id_and_order_id", unique: true
+    t.index ["coupon_id"], name: "index_coupons_orders_on_coupon_id"
+    t.index ["order_id"], name: "index_coupons_orders_on_order_id"
   end
 
   create_table "order_items", force: :cascade do |t|

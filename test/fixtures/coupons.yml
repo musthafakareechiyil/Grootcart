@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  valid_from: 2023-05-25
+  valid_until: 2023-05-25
+  minimum_purchase_amount: 9.99
+  discount_type: MyString
+  discount_value: 9.99
+  maximum_discount_amount: 9.99
+
+two:
+  code: MyString
+  valid_from: 2023-05-25
+  valid_until: 2023-05-25
+  minimum_purchase_amount: 9.99
+  discount_type: MyString
+  discount_value: 9.99
+  maximum_discount_amount: 9.99

@@ -1,43 +1,51 @@
 <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-25 d-flex justify-content-center">
-                        <h4 id="refresh" class = "mt-4">Billing Details</h4>
-                    </div>                   
-                    <div class="col-lg-6  ">
-                            <div class="card-header">
-                                <h5 class="mb-0">Select shipping address</h5>
-                            </div>
-<% if @addresses.any? %>
-  <form action="/purchase" method="post">
-    <% @addresses.each do |address| %>
-      <div class="form-check">
-        <%= radio_button_tag :address_id, address.id, class: "form-check-input", id: "address_#{address.id}"  %>
-        <%= label_tag "address_#{address.id}", address.full_address ,class: "form-check-label", style: "font-size: 16px; margin-left: 5px;"%>
+  <div class="col-md-6">
+    <div class="mb-25 d-flex justify-content-center">
+      <h4 id="refresh" class="mt-4">Billing Details</h4>
+    </div>
+    <div class="col-lg-6">
+      <div class="card-header">
+        <h5 class="mb-0">Select shipping address</h5>
       </div>
-<% end %>
+      <% if @addresses.any? %>
+        <form action="/purchase" method="post">
+          <% @addresses.each do |address| %>
+            <div class="form-check">
+              <%= radio_button_tag :address_id, address.id, class: "form-check-input", id: "address_#{address.id}" %>
+              <%= label_tag "address_#{address.id}", address.full_address, class: "form-check-label", style: "font-size: 16px; margin-left: 5px;" %>
+            </div>
+          <% end %>
 
+          <h2>Payment method</h2>
+          <div>
+            <%= label_tag :payment_method, 'Cash on delivery', class: 'label', style: 'margin-left: 10px; font-size: 16px;' %>
+            <%= radio_button_tag :payment_method, 'cod', class: 'radio-button', style: 'width: 20px; height: 20px; border-radius: 50%; border: 2px solid #ccc; outline: none;' %>
 
+            <%= label_tag :payment_method, 'Razor Pay', class: 'label', style: 'margin-left: 10px; font-size: 16px;' %>
+            <%= radio_button_tag :payment_method, 'razor pay', class: 'radio-button', style: 'width: 20px; height: 20px; border-radius: 50%; border: 2px solid #ccc; outline: none;' %>
+          </div>
 
+          <%= submit_tag 'Complete purchase' %>
+        </form>
 
-    <h2>Payment method</h2>
+        <% if @coupon_applied %>
+          <%= button_to "Remove Coupon", remove_coupon_path, method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <h2>Coupon Code</h2>
+          <%= form_tag apply_coupon_path, method: :post do %>
+            <div class="form-group">
+              <%= label_tag :coupon_code, 'Coupon Code', class: 'label', style: 'margin-left: 10px; font-size: 16px;' %>
+              <%= text_field_tag :coupon_code, nil, class: 'form-control' %>
+            </div>
+            <%= submit_tag 'Apply Coupon', class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
 
-<div>
-  <%= label_tag :payment_method, 'Cash on delivery', class: 'label', style: 'margin-left: 10px; font-size: 16px;' %>
-  <%= radio_button_tag :payment_method, 'cod', class: 'radio-button', style: 'width: 20px; height: 20px; border-radius: 50%; border: 2px solid #ccc; outline: none;' %>
+      <% else %>
+        <p>You haven't added any addresses yet.</p>
+      <% end %>
 
-  <%= label_tag :payment_method, 'Razor Pay', class: 'label', style: 'margin-left: 10px; font-size: 16px;' %>
-  <%= radio_button_tag :payment_method, 'razor pay', class: 'radio-button', style: 'width: 20px; height: 20px; border-radius: 50%; border: 2px solid #ccc; outline: none;' %>
-</div>
-
-
-    <%= submit_tag 'Complete purchase' %>
-  </form>
-<% else %>
-  <p>You haven't added any addresses yet.</p>
-<% end %>
-
- <p><%= link_to "Add Address", new_custom_address_path, class: "btn", data: { modal: "modal" } %></p>  
-
-
-</div>
+      <p><%= link_to "Add Address", new_custom_address_path, class: "btn", data: { modal: "modal" } %></p>
+    </div>
+  </div>
 </div>

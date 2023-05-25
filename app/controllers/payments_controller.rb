@@ -12,14 +12,20 @@ class PaymentsController < ApplicationController
     if current_user.cart_count.zero?
       redirect_to shop_path, notice: "Your cart is empty. Please add items to your cart before proceeding to checkout."
     end
-    amount = params[:amount].to_i
+
+    amount = session[:total_price].to_f
+
+    apply_coupon_discount if session[:coupon_discount].present?
+    amount -= session[:coupon_discount].to_f if session[:coupon_discount].present?
 
     razorpay_client = Razorpay::Client.new
     payment = razorpay_client.payment.create(
-      amount: amount,
+      amount: (amount * 100).to_i,
       currency: 'INR',
       receipt: 'order_receipt'
     )
+
+    clear_coupon_session
 
     redirect_to payment[:short_url]
   end
@@ -56,6 +62,9 @@ class PaymentsController < ApplicationController
       redirect_to shop_path, notice: "Your cart is empty. Please add items to your cart before proceeding to checkout."
     end
     total_price = current_user.cart_total_price
+    if session[:coupon_discount].present?
+      total_price -= session[:coupon_discount].to_f
+    end
     order = current_user.orders.create(
       address: address,
       payment_method: payment_method,
@@ -70,5 +79,17 @@ class PaymentsController < ApplicationController
     end
 
     current_user.remove_all_items_from_cart
+    clear_coupon_session
   end
+
+  def apply_coupon_discount
+    discount_amount = session[:coupon_discount].to_f
+    @amount -= discount_amount
+  end
+
+  def clear_coupon_session
+    session[:coupon_code] = nil
+    session[:coupon_discount] = nil
+  end
+
 end

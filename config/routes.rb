@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  delete '/remove_coupon', to: 'checkout#remove_coupon', as: 'remove_coupon'
+  post '/checkout/apply_coupon', to: 'checkout#apply_coupon', as: 'apply_coupon'
   resources :orders do
     member do
       patch :return
