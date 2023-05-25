@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_062058) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_084403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,6 +92,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_062058) do
     t.integer "stock_quantity"
     t.integer "reserved_quantity", default: 0
     t.datetime "reserved_until"
+    t.string "offer_title"
+    t.float "offer_discount_percentage"
+    t.date "offer_start_date"
+    t.date "offer_end_date"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

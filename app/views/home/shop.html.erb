@@ -29,17 +29,17 @@
                     <%= product.description %>
                   </a>
                 </h4>
+                <% if product.offer_discount_percentage.present? && product.offer_end_date.present? && product.offer_end_date >= Date.today %>
+                  <p class="offer">Offer: <%= product.offer_discount_percentage %>% off</p>
+                  <p class="offer">Offer ends on: <%= product.offer_end_date.strftime('%B %d, %Y') %></p>
+                  <p class="price">Offer Price: <%= product.price - (product.price * product.offer_discount_percentage / 100) %></p>
+                <% else %>
+                  <p class="price">Price: <%= number_to_currency(product.price, unit: '₹') %></p>
+                <% end %>
                 <div class="rating-result" title="90%">
                   <span>
                     <span>86%</span>
                   </span>
-                </div>
-                <div class="product-price">
-                  <span style="color: green;">
-                    <%= number_to_currency(product.price, unit: '₹') %>
-                  </span>
-                  <!-- <span class="old-price">$245.8</span>
-                                <span style="color: green;">$2465</span> -->
                 </div>
                 <div class="product-action-1 show">
                   <%# <%= link_to "<i class='fi-rs-shopping-bag-add'></i>".html_safe, add_to_cart_path(@product), method: :put, class: "action-btn hover-up", aria: { label: "Add To Cart" } %> 
@@ -48,7 +48,7 @@
                       <i class="fi-rs-shopping-bag-add" style="color: #fff;"></i>
                     <% end %>
                   <% else %>
-                    <%= button_to add_to_cart_custom_path(product_id: product.id), method: :put, class: "add-to-cart-btn", style: "display: flex; align-items: center; justify-content: center; background-color: red; color: #fff; border: none; border-radius: 5px; padding: 10px;", onclick: "alert('Sorry , the product is out of stock!'); return false;" do %>
+                    <%= button_to add_to_cart_custom_path(product_id: product.id), method: :put, class: "add-to-cart-btn", style: "display: flex; align-items: center; justify-content: center; background-color: red; color: #fff; border: none; border-radius: 5px; padding: 10px;", onclick: "alert('Sorry, the product is out of stock!'); return false;" do %>
                       <i class="fi-rs-shopping-bag-add" style="color: #fff;"></i>
                     <% end %>
                   <% end %>
@@ -61,6 +61,7 @@
     </div>
   </div>
 </div>
+
 
 
 

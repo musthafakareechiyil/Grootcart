@@ -34,9 +34,9 @@
           <tr>
             <td class="align-middle"><%= image_tag url_for(product.image(:thumb)) %></td>
             <td class="align-middle"><%= product.title %></td>
-            <td class="align-middle"><%= product.price %></td>
+            <td class="align-middle"><%= product.offer_price %></td>
             <td class="align-middle"><%= qty %></td>
-            <td class="align-middle"><%= product.price * qty.to_i %></td>
+            <td class="align-middle"><%= product.offer_price * qty.to_i %></td>
             <td class="align-middle">
               <div class="d-flex align-items-center">
                 <% if product.stock_quantity > 0 && product.stock_quantity - product.reserved_quantity > 0 %>
