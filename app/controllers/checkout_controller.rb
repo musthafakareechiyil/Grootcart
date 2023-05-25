@@ -6,6 +6,7 @@ class CheckoutController < ApplicationController
       @total_price = current_user.cart_total_price
 
       if session[:coupon_discount].present?
+        update_coupon_discount
         @total_price -= session[:coupon_discount].to_f
       end
 
@@ -21,6 +22,7 @@ class CheckoutController < ApplicationController
       total_price = current_user.cart_total_price
 
       if session[:coupon_discount].present?
+        update_coupon_discount
         total_price -= session[:coupon_discount].to_f
       end
 
@@ -99,6 +101,20 @@ class CheckoutController < ApplicationController
       when "fixed_amount"
         coupon.discount_value
       end
+    end
+
+    def update_coupon_discount
+      return unless session[:coupon_code].present?
+  
+      coupon = Coupon.find_by(code: session[:coupon_code])
+      return if coupon.nil?
+  
+      max_discount_amount = calculate_discount_amount(coupon)
+      current_discount_amount = session[:coupon_discount].to_f
+  
+      new_discount_amount = [max_discount_amount, current_user.cart_total_price * coupon.discount_value / 100].min
+  
+      session[:coupon_discount] = new_discount_amount
     end
 end
   
