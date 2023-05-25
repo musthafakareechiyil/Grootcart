@@ -105,16 +105,22 @@ class CheckoutController < ApplicationController
 
     def update_coupon_discount
       return unless session[:coupon_code].present?
-  
+    
       coupon = Coupon.find_by(code: session[:coupon_code])
       return if coupon.nil?
-  
+    
       max_discount_amount = calculate_discount_amount(coupon)
       current_discount_amount = session[:coupon_discount].to_f
-  
-      new_discount_amount = [max_discount_amount, current_user.cart_total_price * coupon.discount_value / 100].min
-  
-      session[:coupon_discount] = new_discount_amount
+      cart_total_price = current_user.cart_total_price
+    
+      if cart_total_price < coupon.minimum_purchase_amount
+        session[:coupon_code] = nil
+        session[:coupon_discount] = nil
+      else
+        new_discount_amount = [max_discount_amount, cart_total_price * coupon.discount_value / 100].min
+        session[:coupon_discount] = new_discount_amount
+      end
     end
+    
 end
   
