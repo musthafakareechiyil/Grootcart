@@ -17,8 +17,8 @@ class Product < ApplicationRecord
     end
 
     def offer_price
-        if offer_discount_percentage.present? && offer_start_date.present? && offer_end_date.present? && offer_start_date <= Date.today && offer_end_date >= Date.today
-          price - (price * offer_discount_percentage / 100)
+        if category&.offer_discount_percentage.present? && category&.offer_end_date.present? && category.offer_end_date >= Date.today
+          price - (price * category.offer_discount_percentage / 100)
         else
           price
         end

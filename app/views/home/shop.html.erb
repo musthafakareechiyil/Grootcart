@@ -30,12 +30,23 @@
                   </a>
                 </h4>
                 <% if product.offer_discount_percentage.present? && product.offer_end_date.present? && product.offer_end_date >= Date.today %>
-                  <p class="offer">Offer: <%= product.offer_discount_percentage %>% off</p>
-                  <p class="offer">Offer ends on: <%= product.offer_end_date.strftime('%B %d, %Y') %></p>
-                  <p class="price">Offer Price: <%= product.price - (product.price * product.offer_discount_percentage / 100) %></p>
+                  <% offer_price = product.price - (product.price * product.offer_discount_percentage / 100) %>
+                  <% if offer_price < product.price %>
+                    <p class="highlighted">Offer: <%= product.offer_discount_percentage %>% off <br> Offer Price: <%= number_to_currency(offer_price, unit: '₹') %></p>
+                  <% else %>
+                    <p>Price: <%= number_to_currency(product.price, unit: '₹') %></p>
+                  <% end %>
+                <% elsif product.category.offer_discount_percentage.present? && product.category.offer_end_date.present? && product.category.offer_end_date >= Date.today %>
+                  <% offer_price = product.price - (product.price * product.category.offer_discount_percentage / 100) %>
+                  <% if offer_price < product.price %>
+                    <p class="highlighted">Offer: <%= product.category.offer_discount_percentage %>% off <br> Offer Price: <%= number_to_currency(offer_price, unit: '₹') %></p>
+                  <% else %>
+                    <p>Price: <%= number_to_currency(product.price, unit: '₹') %></p>
+                  <% end %>
                 <% else %>
-                  <p class="price">Price: <%= number_to_currency(product.price, unit: '₹') %></p>
+                  <p>Price: <%= number_to_currency(product.price, unit: '₹') %></p>
                 <% end %>
+
                 <div class="rating-result" title="90%">
                   <span>
                     <span>86%</span>
