@@ -11,6 +11,7 @@ Rails.application.configure do
   config.hosts.clear
 
   config.hosts << "grootcart.tech"
+  config.hosts << "127.0.0.1"
 
   # Do not eager load code on boot.
   config.eager_load = false

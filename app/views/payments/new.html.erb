@@ -2,8 +2,16 @@
   <%= label_tag(:amount, 'Amount (in paise)') %>
   <%= text_field_tag(:amount, @amount, readonly: true) %>
 
-  <%= submit_tag('Pay with Razorpay') %>
+  <%= button_to('Pay with Razorpay', '#', class: 'btn btn-primary') %>
 <% end %>
+
+<br>
+
+
+<%= form_tag('/your/form/action', method: 'post') do %>
+  <%= button_to 'Click here if browser error persists', {}, class: 'btn btn-secondary' %>
+<% end %>
+
 
 <script>
   document.getElementById('payment-form').addEventListener('submit', function(e) {
@@ -57,4 +65,14 @@
     var razorpayPayment = new Razorpay(options);
     razorpayPayment.open();
   });
+</script>
+
+<script>
+var currentURL = window.location.href;
+document.getElementById('reload').onclick = function(){
+  location.reload()
+}
+
+
+
 </script>
