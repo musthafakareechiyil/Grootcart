@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_135437) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_135908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_135437) do
     t.string "payment_method"
     t.decimal "refund_amount", precision: 10, scale: 2
     t.boolean "refund_confirmed"
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -125,6 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_135437) do
   add_foreign_key "coupons", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
 end
