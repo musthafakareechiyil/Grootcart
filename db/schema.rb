@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_02_115707) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_03_132942) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_115707) do
     t.decimal "refund_amount", precision: 10, scale: 2
     t.boolean "refund_confirmed"
     t.bigint "address_id"
+    t.decimal "total_refunds", precision: 10, scale: 2, default: "0.0"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
