@@ -28,9 +28,15 @@ class CartsController < ApplicationController
   
   
   def add
-    current_user.add_to_cart(params[:product_id])
-    redirect_to cart_path
+    product = Product.find(params[:product_id])
+    if current_user.add_to_cart(product.id)
+      flash[:notice] = "Product added to cart successfully."
+    else
+      flash[:alert] = "Failed to add product to cart."
+    end
+    redirect_to shop_path
   end
+  
   
   def remove
     current_user.remove_from_cart(params[:product_id])

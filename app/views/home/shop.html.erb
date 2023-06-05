@@ -56,7 +56,7 @@
                 <div class="product-action-1 show">
                   <%# <%= link_to "<i class='fi-rs-shopping-bag-add'></i>".html_safe, add_to_cart_path(@product), method: :put, class: "action-btn hover-up", aria: { label: "Add To Cart" } %> 
                   <% if product.stock_quantity > 0 && product.stock_quantity - product.reserved_quantity > 0 %>
-                    <%= button_to add_to_cart_custom_path(product_id: product.id), method: :put, class: "add-to-cart-btn", style: "display: flex; align-items: center; justify-content: center; background-color: #333; color: #fff; border: none; border-radius: 5px; padding: 10px;" do %>
+                    <%= button_to add_to_cart_path(product_id: product.id), method: :put, class: "add-to-cart-btn", style: "display: flex; align-items: center; justify-content: center; background-color: #333; color: #fff; border: none; border-radius: 5px; padding: 10px;" do %>
                       <i class="fi-rs-shopping-bag-add" style="color: #fff;"></i>
                     <% end %>
                   <% else %>
