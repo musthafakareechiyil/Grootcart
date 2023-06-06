@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       put "add/:product_id", to: 'carts#add', as: :add_to
       put "remove/:product_id", to: 'carts#remove', as: :remove_from
       put "remove_one/:product_id", to: 'carts#removeone', as: :remove_one
+      put "add_one/:product_id", to: 'carts#add_one', as: :add_one_to
     end
   end
   get '/carts/add/:product_id', to: 'carts#add', as: 'add_to_cart_custom'
@@ -63,16 +64,6 @@ Rails.application.routes.draw do
   resources :order_items
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
-
-
-
-  
-  
-
-
-
-
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

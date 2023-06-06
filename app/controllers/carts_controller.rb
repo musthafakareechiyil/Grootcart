@@ -36,6 +36,17 @@ class CartsController < ApplicationController
     end
     redirect_to shop_path
   end
+
+  def add_one
+    product = Product.find(params[:product_id])
+    if current_user.add_one_to_cart(product.id)
+      flash[:notice] = "One quantity added to cart successfully."
+    else
+      flash[:alert] = "Failed to add one quantity to cart."
+    end
+    redirect_to cart_path
+  end
+  
   
   
   def remove
