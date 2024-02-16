@@ -83,3 +83,5 @@ gem "redis"
 gem "sidekiq", "~> 7.0"
 
 gem "razorpay", "~> 3.0"
+gem 'mini_racer', platforms: :ruby
+
