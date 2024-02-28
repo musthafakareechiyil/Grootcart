@@ -12,6 +12,8 @@ Rails.application.configure do
 
   config.hosts << "grootcart.tech"
   config.hosts << "127.0.0.1"
+  # config.hosts << "localhost"
+
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -66,6 +68,8 @@ Rails.application.configure do
 
   # devise config
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.force_ssl = true
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
