@@ -69,6 +69,8 @@ Rails.application.configure do
   # devise config
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.action_cable.allowed_request_origins = [%r{http://*}, %r{https://*}]
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

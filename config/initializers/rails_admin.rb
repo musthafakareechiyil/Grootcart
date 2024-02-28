@@ -13,7 +13,7 @@ RailsAdmin.config do |config|
       field :order_status, :enum do
         enum do
           {
-            '0': 0,
+            'pending': 0,
             '1': 1,
             '2': 2,
             '3': 3,
